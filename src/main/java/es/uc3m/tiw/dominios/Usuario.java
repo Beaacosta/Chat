@@ -11,26 +11,15 @@ import javax.persistence.Table;
 import javax.persistence.OneToOne;
 import static javax.persistence.CascadeType.ALL;
 
-@Entity
-@Table(name="USUARIO")
-public class Usuario implements Serializable {
-	@Id
-	@GeneratedValue(strategy = AUTO)
-	private int id;
-	@Column(length = 30)
-	private String apellidos;
-	@Column(nullable = false)
-	private String ciudad;
-	@Column(nullable = false, length = 30, unique = true)
-	private String mail;
-	@Column(nullable = false, length = 15)
-	private String nombre;	
+public class Usuario{
 
-	@Column(nullable = false)
+	private int id;
+	private String apellidos;
+	private String ciudad;
+	private String mail;
+	private String nombre;	
 	private String password;
-	
-	/*@OneToOne(cascade = ALL)
-	private Direccion direccion;*/
+
 		
 	public Usuario() {
 		// TODO Auto-generated constructor stub

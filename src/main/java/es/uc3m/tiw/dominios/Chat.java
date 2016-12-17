@@ -21,55 +21,40 @@ public class Chat implements Serializable {
 	private Calendar fecha;
 	@Column(nullable = false)
 	private String mensaje;
-	@ManyToOne
-	private Usuario emisor;
-	@ManyToOne
-	private Usuario receptor;
-	
-	public Chat(Usuario receptor, String mensaje, Usuario emisor) {
+	@Column
+	private int emisor;
+	@Column
+	private int receptor;
+	public Chat(Calendar fecha, String mensaje, int emisor, int receptor) {
 		super();
-		this.fecha = Calendar.getInstance();
-		this.receptor = receptor;
+		this.fecha = fecha;
 		this.mensaje = mensaje;
 		this.emisor = emisor;
+		this.receptor = receptor;
 	}
-
-
 	public Calendar getFecha() {
 		return fecha;
 	}
-
-
 	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
-
-
-	public Usuario getReceptor() {
-		return receptor;
-	}
-
-
-	public void setReceptor(Usuario receptor) {
-		this.receptor = receptor;
-	}
-
-
 	public String getMensaje() {
 		return mensaje;
 	}
-
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
-	public Usuario getEmisor() {
+	public int getEmisor() {
 		return emisor;
 	}
-
-	public void setEmisor(Usuario emisor) {
+	public void setEmisor(int emisor) {
 		this.emisor = emisor;
 	}
-
-		
+	public int getReceptor() {
+		return receptor;
+	}
+	public void setReceptor(int receptor) {
+		this.receptor = receptor;
+	}
+	
 }
