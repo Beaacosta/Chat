@@ -2,6 +2,7 @@ package es.uc3m.tiw.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ import es.uc3m.tiw.dominios.Conversacion;
 public class Controlador {
 	
 	private Chat chat;
+	@Autowired
 	private ChatDao dao;
 	
 	//Buscar un producto en la BBDD por id
@@ -36,8 +38,16 @@ public class Controlador {
 	}
 	
 	//Añadir un mensaje en la BBDD 
+	@RequestMapping(value = "/m", method = RequestMethod.POST)
+	public void m(){
+		String bea = chat.getMensaje();
+		dao.save(chat);	
+	}
+	
+	//Añadir un mensaje en la BBDD 
 	@RequestMapping(value = "/anyadir_mensaje", method = RequestMethod.POST)
-	public void anyadirMensaje(@RequestParam(value = "chat", required = true) Chat chat){
+	public void anyadirMensaje(@RequestBody Chat chat){
+		String bea = chat.getMensaje();
 		dao.save(chat);	
 	}
 	
