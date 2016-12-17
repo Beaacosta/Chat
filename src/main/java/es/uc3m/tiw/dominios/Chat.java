@@ -18,25 +18,26 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name="CHAT")
 public class Chat implements Serializable {
 	@Id
-	private Calendar fecha;
+	@GeneratedValue(strategy = AUTO)
+	private int id_chat;
 	@Column(nullable = false)
 	private String mensaje;
 	@Column
 	private int emisor;
 	@Column
 	private int receptor;
-	public Chat(Calendar fecha, String mensaje, int emisor, int receptor) {
+	public Chat(int id_chat, String mensaje, int emisor, int receptor) {
 		super();
-		this.fecha = fecha;
+		this.id_chat = id_chat;
 		this.mensaje = mensaje;
 		this.emisor = emisor;
 		this.receptor = receptor;
 	}
-	public Calendar getFecha() {
-		return fecha;
+	public int getId_chat() {
+		return id_chat;
 	}
-	public void setFecha(Calendar fecha) {
-		this.fecha = fecha;
+	public void setId_chat(int id_chat) {
+		this.id_chat = id_chat;
 	}
 	public String getMensaje() {
 		return mensaje;
