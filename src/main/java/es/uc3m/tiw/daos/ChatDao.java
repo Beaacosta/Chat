@@ -9,5 +9,5 @@ import es.uc3m.tiw.dominios.Chat;
 
 public interface ChatDao extends  JpaRepository<Chat, Long>{
 	List<Chat> findAll();
-	List<Chat> findByEmisorAndReceptorOrderByFechaAsc(String emisor, String receptor);
+	List<Chat> findByEmisorAndReceptorOrderByFechaAsc(int emisor, int receptor);
 }

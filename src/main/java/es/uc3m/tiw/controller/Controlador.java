@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.uc3m.tiw.daos.ChatDao;
 import es.uc3m.tiw.dominios.Chat;
+import es.uc3m.tiw.dominios.Conversacion;
 
 
 
@@ -25,14 +27,16 @@ public class Controlador {
 	private ChatDao dao;
 	
 	//Buscar un producto en la BBDD por id
-	@RequestMapping(value = "/buscar_mensaje", method = RequestMethod.GET)
-	public List<Chat> buscarEmisor(@RequestParam(value = "emisor", required = true) String emisor, @RequestParam(value = "receptor", required = true) String receptor){
+	@RequestMapping(value = "/buscar_mensaje", method = RequestMethod.POST)
+	public @ResponseBody List<Chat> buscarEmisor(@RequestBody Conversacion conv){
+		int emisor = conv.getEmisor().getId();
+		int receptor = conv.getReceptor().getId();
 		List<Chat> mensajes= dao.findByEmisorAndReceptorOrderByFechaAsc(emisor, receptor);
 		return mensajes;
 	}
 	
 	//Añadir un mensaje en la BBDD 
-	@RequestMapping(value = "/anyadir_mensaje", method = RequestMethod.GET)
+	@RequestMapping(value = "/anyadir_mensaje", method = RequestMethod.POST)
 	public void anyadirMensaje(@RequestParam(value = "chat", required = true) Chat chat){
 		dao.save(chat);	
 	}
