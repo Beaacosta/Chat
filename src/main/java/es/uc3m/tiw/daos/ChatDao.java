@@ -14,4 +14,6 @@ public interface ChatDao extends  JpaRepository<Chat, Long>{
 
 	List<Chat> findByEmisor(int emisor);
 
+	List<Chat> findByReceptor(int receptor);
+
 }

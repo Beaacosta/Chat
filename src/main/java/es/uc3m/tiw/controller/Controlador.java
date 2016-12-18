@@ -53,5 +53,14 @@ public class Controlador {
 		receptores = dao.findByEmisor(emisor);
 		return receptores;
 	}	
+	
+	//Buscar los productos de un usuario en la BBDD
+	@RequestMapping(value = "/listar_emisores", method = RequestMethod.POST)
+	public @ResponseBody List<Chat> listarEmisores(@RequestBody Usuario usuario_ses){
+		int receptor = usuario_ses.getId();
+		List<Chat> emisores= null;
+		emisores = dao.findByReceptor(receptor);
+		return emisores;
+	}
 
 }
