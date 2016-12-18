@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.uc3m.tiw.daos.ChatDao;
 import es.uc3m.tiw.dominios.Chat;
 import es.uc3m.tiw.dominios.Conversacion;
+import es.uc3m.tiw.dominios.Usuario;
 
 
 
@@ -33,15 +34,8 @@ public class Controlador {
 	public @ResponseBody List<Chat> buscarEmisor(@RequestBody Conversacion conv){
 		int emisor = conv.getEmisor().getId();
 		int receptor = conv.getReceptor().getId();
-		//List<Chat> mensajes= dao.findByEmisorAndReceptorOrderByFechaAsc(emisor, receptor);
+		List<Chat> mensajes= dao.findByEmisorAndReceptorOrderByIdChatAsc(emisor, receptor);
 		return mensajes;
-	}
-	
-	//Añadir un mensaje en la BBDD 
-	@RequestMapping(value = "/m", method = RequestMethod.POST)
-	public void m(){
-		String bea = chat.getMensaje();
-		dao.save(chat);	
 	}
 	
 	//Añadir un mensaje en la BBDD 
@@ -51,5 +45,13 @@ public class Controlador {
 		dao.save(chat);	
 	}
 	
+	//Buscar los productos de un usuario en la BBDD
+	@RequestMapping(value = "/listar_receptores", method = RequestMethod.POST)
+	public @ResponseBody List<Chat> listarReceptores(@RequestBody Usuario usuario_ses){
+		int emisor = usuario_ses.getId();
+		List<Chat> receptores= null;
+		receptores = dao.findByEmisor(emisor);
+		return receptores;
+	}	
 
 }

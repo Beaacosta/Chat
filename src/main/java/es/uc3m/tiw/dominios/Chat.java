@@ -19,25 +19,30 @@ import static javax.persistence.CascadeType.ALL;
 public class Chat implements Serializable {
 	@Id
 	@GeneratedValue(strategy = AUTO)
-	private int id_chat;
+	private int idChat;
 	@Column(nullable = false)
 	private String mensaje;
 	@Column
 	private int emisor;
 	@Column
 	private int receptor;
-	public Chat(int id_chat, String mensaje, int emisor, int receptor) {
+	public Chat(int idChat, String mensaje, int emisor, int receptor) {
 		super();
-		this.id_chat = id_chat;
+		this.idChat = idChat;
 		this.mensaje = mensaje;
 		this.emisor = emisor;
 		this.receptor = receptor;
 	}
-	public int getId_chat() {
-		return id_chat;
+	
+	public Chat() {
+		super();
 	}
-	public void setId_chat(int id_chat) {
-		this.id_chat = id_chat;
+
+	public int getIdChat() {
+		return idChat;
+	}
+	public void setIdChat(int idChat) {
+		this.idChat = idChat;
 	}
 	public String getMensaje() {
 		return mensaje;
