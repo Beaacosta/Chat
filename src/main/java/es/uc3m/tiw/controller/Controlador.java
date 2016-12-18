@@ -33,7 +33,7 @@ public class Controlador {
 	public @ResponseBody List<Chat> buscarEmisor(@RequestBody Conversacion conv){
 		int emisor = conv.getEmisor().getId();
 		int receptor = conv.getReceptor().getId();
-		List<Chat> mensajes= dao.findByEmisorAndReceptorOrderByFechaAsc(emisor, receptor);
+		//List<Chat> mensajes= dao.findByEmisorAndReceptorOrderByFechaAsc(emisor, receptor);
 		return mensajes;
 	}
 	
